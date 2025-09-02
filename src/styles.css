@@ -1,0 +1,457 @@
+:root {
+  --ef-bg: #10131a;
+  --ef-bg-alt: #181c25;
+  --ef-primary: #6be0e6;
+  --ef-accent: #e66bba;
+  --ef-text: #f3f3f3;
+  --ef-muted: #b0b6c3;
+  --ef-card: #1a1e29;
+  --ef-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
+  --ef-radius: 18px;
+  --ef-font-main: 'Montserrat', 'Bebas Neue', 'Oswald', Arial, sans-serif;
+  --ef-font-head: 'Bebas Neue', 'Montserrat', Arial, sans-serif;
+  --ef-hero-height: 100vh;
+  --ef-transition: 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ef-bg);
+  color: var(--ef-text);
+  font-family: var(--ef-font-main);
+  scroll-behavior: smooth;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.ef-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(16,19,26,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  box-shadow: var(--ef-shadow);
+  font-family: var(--ef-font-head);
+  letter-spacing: 0.05em;
+}
+
+.ef-logo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ef-primary);
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 16px var(--ef-accent);
+}
+
+.ef-header nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.ef-header nav a {
+  color: var(--ef-text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color var(--ef-transition);
+}
+
+.ef-header nav a:hover {
+  color: var(--ef-primary);
+}
+
+.ef-cta {
+  background: linear-gradient(90deg, var(--ef-primary), var(--ef-accent));
+  color: #181c25;
+  padding: 0.7em 1.6em;
+  border-radius: var(--ef-radius);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 12px 0 rgba(107,224,230,0.15);
+  transition: background var(--ef-transition), color var(--ef-transition);
+  border: none;
+  cursor: pointer;
+  margin-left: 1.5rem;
+}
+
+.ef-cta:hover, .ef-cta:focus {
+  background: linear-gradient(90deg, var(--ef-accent), var(--ef-primary));
+  color: var(--ef-text);
+}
+
+.ef-hero {
+  position: relative;
+  width: 100vw;
+  height: var(--ef-hero-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.ef-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.45) blur(1.5px);
+  transition: filter 0.5s;
+}
+
+.ef-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(16,19,26,0.7) 0%, rgba(16,19,26,0.95) 100%);
+  z-index: 2;
+}
+
+.ef-hero-img {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 3;
+  width: 340px;
+  max-width: 80vw;
+  border-radius: 50%;
+  box-shadow: 0 0 64px 0 rgba(107,224,230,0.18);
+  opacity: 0.92;
+  border: 4px solid var(--ef-accent);
+  animation: ef-hero-fadein 1.8s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes ef-hero-fadein {
+  from { opacity: 0; transform: translate(-50%, -60%) scale(0.8);}
+  to { opacity: 0.92; transform: translate(-50%, -50%) scale(1.1);}
+}
+
+.ef-hero-content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  color: var(--ef-text);
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  text-shadow: 0 2px 24px #000;
+}
+
+.ef-hero-content h1 {
+  font-family: var(--ef-font-head);
+  font-size: 3.2rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.5rem;
+  color: var(--ef-primary);
+  text-shadow: 0 2px 32px var(--ef-accent);
+}
+
+.ef-hero-content p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 2.2rem;
+  color: var(--ef-muted);
+}
+
+.ef-cta-hero {
+  font-size: 1.2rem;
+  padding: 1em 2.2em;
+  border-radius: 32px;
+  box-shadow: 0 4px 32px 0 rgba(230,107,186,0.12);
+}
+
+.ef-scroll-indicator {
+  position: absolute;
+  left: 50%; bottom: 2.5rem;
+  transform: translateX(-50%);
+  font-size: 2.2rem;
+  color: var(--ef-primary);
+  opacity: 0.7;
+  z-index: 5;
+  animation: ef-bounce 1.6s infinite;
+  pointer-events: none;
+}
+
+@keyframes ef-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0);}
+  50% { transform: translateX(-50%) translateY(12px);}
+}
+
+.ef-section {
+  position: relative;
+  padding: 6rem 1.5rem 4rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--ef-bg-alt);
+  border-radius: var(--ef-radius);
+  box-shadow: var(--ef-shadow);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  z-index: 10;
+}
+
+.ef-section h2 {
+  font-family: var(--ef-font-head);
+  font-size: 2.2rem;
+  color: var(--ef-accent);
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.08em;
+}
+
+.ef-section p {
+  font-size: 1.15rem;
+  color: var(--ef-muted);
+  margin-bottom: 1.5rem;
+}
+
+.ef-method-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.ef-method-list li {
+  font-size: 1.1rem;
+  background: rgba(107,224,230,0.07);
+  border-left: 4px solid var(--ef-primary);
+  padding: 0.7em 1.2em;
+  border-radius: 8px;
+  color: var(--ef-text);
+}
+
+.ef-coaching-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.ef-card {
+  background: var(--ef-card);
+  border-radius: var(--ef-radius);
+  box-shadow: 0 2px 16px 0 rgba(230,107,186,0.08);
+  padding: 2rem 1.5rem;
+  min-width: 220px;
+  max-width: 320px;
+  flex: 1 1 220px;
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1.5px solid rgba(107,224,230,0.13);
+}
+
+.ef-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 rgba(107,224,230,0.18);
+}
+
+.ef-card h3 {
+  color: var(--ef-primary);
+  font-family: var(--ef-font-head);
+  font-size: 1.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.ef-testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  margin-top: 2rem;
+}
+
+.ef-testimonials blockquote {
+  background: rgba(230,107,186,0.07);
+  border-left: 4px solid var(--ef-accent);
+  padding: 1.2em 1.5em;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: var(--ef-text);
+  font-style: italic;
+  box-shadow: 0 2px 12px 0 rgba(230,107,186,0.06);
+  margin: 0;
+}
+
+.ef-testimonials footer {
+  font-size: 0.98rem;
+  color: var(--ef-muted);
+  margin-top: 0.5em;
+  font-style: normal;
+}
+
+.ef-games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.2rem;
+  margin-top: 2.5rem;
+}
+
+.ef-game-card {
+  background: var(--ef-card);
+  border-radius: var(--ef-radius);
+  box-shadow: 0 2px 16px 0 rgba(107,224,230,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1.5px solid rgba(230,107,186,0.13);
+}
+
+.ef-game-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 rgba(230,107,186,0.18);
+}
+
+.ef-game-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--ef-primary);
+}
+
+.ef-game-card h3 {
+  color: var(--ef-accent);
+  font-family: var(--ef-font-head);
+  font-size: 1.2rem;
+  margin: 1.1rem 0 0.5rem 0;
+  padding: 0 1rem;
+}
+
+.ef-game-card p {
+  color: var(--ef-muted);
+  font-size: 1rem;
+  padding: 0 1rem 1.2rem 1rem;
+}
+
+.ef-contact {
+  background: linear-gradient(120deg, rgba(107,224,230,0.07) 0%, rgba(230,107,186,0.07) 100%);
+  box-shadow: 0 2px 32px 0 rgba(107,224,230,0.08);
+}
+
+.ef-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 420px;
+  margin: 2rem auto 0 auto;
+}
+
+.ef-contact-form input,
+.ef-contact-form textarea {
+  background: var(--ef-bg-alt);
+  border: 1.5px solid var(--ef-primary);
+  border-radius: 8px;
+  color: var(--ef-text);
+  font-size: 1rem;
+  padding: 0.9em 1.1em;
+  font-family: var(--ef-font-main);
+  resize: none;
+  transition: border var(--ef-transition);
+}
+
+.ef-contact-form input:focus,
+.ef-contact-form textarea:focus {
+  border: 1.5px solid var(--ef-accent);
+  outline: none;
+}
+
+.ef-contact-form button {
+  background: linear-gradient(90deg, var(--ef-primary), var(--ef-accent));
+  color: #181c25;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 32px;
+  padding: 0.9em 2em;
+  cursor: pointer;
+  box-shadow: 0 2px 12px 0 rgba(107,224,230,0.12);
+  transition: background var(--ef-transition), color var(--ef-transition);
+}
+
+.ef-contact-form button:hover {
+  background: linear-gradient(90deg, var(--ef-accent), var(--ef-primary));
+  color: var(--ef-text);
+}
+
+.ef-footer {
+  background: #13161e;
+  color: var(--ef-muted);
+  text-align: center;
+  padding: 2.2rem 1rem 1.2rem 1rem;
+  font-size: 1rem;
+  border-top: 1.5px solid rgba(107,224,230,0.08);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.ef-socials {
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+  margin-top: 0.5rem;
+}
+
+.ef-socials a {
+  color: var(--ef-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color var(--ef-transition);
+}
+
+.ef-socials a:hover {
+  color: var(--ef-accent);
+}
+
+@media (max-width: 900px) {
+  .ef-header {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.7rem 1rem;
+  }
+  .ef-section {
+    padding: 4rem 0.7rem 2.5rem 0.7rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .ef-hero-img {
+    width: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ef-header nav {
+    gap: 1rem;
+  }
+  .ef-hero-content h1 {
+    font-size: 2.1rem;
+  }
+  .ef-hero-img {
+    width: 140px;
+  }
+  .ef-section {
+    padding: 2.5rem 0.2rem 1.5rem 0.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .ef-coaching-cards {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .ef-games-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
